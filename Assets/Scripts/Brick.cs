@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Brick : MonoBehaviour {
+
+	public AudioClip crackSound;
+
 	public Sprite[] hitSprites;
 
 	private int timesHit;
