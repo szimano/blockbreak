@@ -14,6 +14,8 @@ public class Brick : MonoBehaviour {
 
 	public static int brickCount = 0;
 
+	public GameObject smoke;
+
 	// Use this for initialization
 	void Start () {
 		timesHit = 0;
@@ -30,6 +32,7 @@ public class Brick : MonoBehaviour {
 		timesHit++;
 		int maxHits = hitSprites.Length + 1;
 		if (timesHit >= maxHits) {
+			ShowSmoke();
 			Destroy(gameObject);
 			brickCount--;
 			if (brickCount <= 0) {
@@ -38,6 +41,12 @@ public class Brick : MonoBehaviour {
 		} else {
 			LoadSprites();
 		}
+	}
+
+	void ShowSmoke() {
+		GameObject smokePuff = Instantiate(smoke, this.transform.position, Quaternion.identity);
+		var mainP = smokePuff.GetComponent<ParticleSystem>().main;
+		mainP.startColor = gameObject.GetComponent<SpriteRenderer>().color;
 	}
 
 	void LoadSprites() {
